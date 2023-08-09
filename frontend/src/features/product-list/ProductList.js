@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { increment, incrementAsync, selectCount } from "./counterSlice";
+import { increment, incrementAsync, selectCount } from "./productListSlice";
 
-export default function Counter() {
+export default function ProductList() {
   const count = useSelector(selectCount);
   const dispatch = useDispatch();
 
