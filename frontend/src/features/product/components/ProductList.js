@@ -1,6 +1,10 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAllProductAsync, selectAllProducts } from "../productListSlice";
+import {
+  fetchAllProductAsync,
+  fetchProductsByFiltersAsync,
+  selectAllProducts,
+} from "../productListSlice";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
@@ -23,6 +27,40 @@ const sortOptions = [
 ];
 
 const filters = [
+  {
+    id: "category",
+    name: "Category",
+    options: [
+      { value: "smartphones", label: "smartphones", checked: false },
+      { value: "laptops", label: "laptops", checked: false },
+      { value: "fragrances", label: "fragrances", checked: false },
+      { value: "skincare", label: "skincare", checked: false },
+      { value: "groceries", label: "groceries", checked: false },
+      {
+        value: "home-decoration",
+        label: "home decoration",
+        checked: false,
+      },
+      { value: "furniture", label: "furniture", checked: false },
+      { value: "tops", label: "tops", checked: false },
+      { value: "womens-dresses", label: "womens dresses", checked: false },
+      { value: "womens-shoes", label: "womens shoes", checked: false },
+      { value: "mens-shirts", label: "mens shirts", checked: false },
+      { value: "mens-shoes", label: "mens shoes", checked: false },
+      { value: "mens-watches", label: "mens watches", checked: false },
+      { value: "womens-watches", label: "womens watches", checked: false },
+      { value: "womens-bags", label: "womens bags", checked: false },
+      {
+        value: "womens-jewellery",
+        label: "womens jewellery",
+        checked: false,
+      },
+      { value: "sunglasses", label: "sunglasses", checked: false },
+      { value: "automotive", label: "automotive", checked: false },
+      { value: "motorcycle", label: "motorcycle", checked: false },
+      { value: "lighting", label: "lighting", checked: false },
+    ],
+  },
   {
     id: "brand",
     name: "Brands",
@@ -195,40 +233,6 @@ const filters = [
       { value: "YIOSI", label: "YIOSI", checked: false },
     ],
   },
-  {
-    id: "category",
-    name: "Category",
-    options: [
-      { value: "smartphones", label: "smartphones", checked: false },
-      { value: "laptops", label: "laptops", checked: false },
-      { value: "fragrances", label: "fragrances", checked: false },
-      { value: "skincare", label: "skincare", checked: false },
-      { value: "groceries", label: "groceries", checked: false },
-      {
-        value: "home-decoration",
-        label: "home decoration",
-        checked: false,
-      },
-      { value: "furniture", label: "furniture", checked: false },
-      { value: "tops", label: "tops", checked: false },
-      { value: "womens-dresses", label: "womens dresses", checked: false },
-      { value: "womens-shoes", label: "womens shoes", checked: false },
-      { value: "mens-shirts", label: "mens shirts", checked: false },
-      { value: "mens-shoes", label: "mens shoes", checked: false },
-      { value: "mens-watches", label: "mens watches", checked: false },
-      { value: "womens-watches", label: "womens watches", checked: false },
-      { value: "womens-bags", label: "womens bags", checked: false },
-      {
-        value: "womens-jewellery",
-        label: "womens jewellery",
-        checked: false,
-      },
-      { value: "sunglasses", label: "sunglasses", checked: false },
-      { value: "automotive", label: "automotive", checked: false },
-      { value: "motorcycle", label: "motorcycle", checked: false },
-      { value: "lighting", label: "lighting", checked: false },
-    ],
-  },
 ];
 
 function classNames(...classes) {
@@ -263,6 +267,14 @@ export default function ProductList() {
   const dispatch = useDispatch();
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const products = useSelector(selectAllProducts);
+  const [filter, setFilter] = useState({});
+
+  const handleFilter = (e, section, option) => {
+    const newFilter = {...filter, [section.id]: option.value};
+    setFilter(newFilter);
+    dispatch(fetchProductsByFiltersAsync(newFilter));
+    console.log(section.id, option.value);
+  };
 
   useEffect(() => {
     dispatch(fetchAllProductAsync());
@@ -361,6 +373,7 @@ export default function ProductList() {
                                             defaultValue={option.value}
                                             type="checkbox"
                                             defaultChecked={option.checked}
+                                            onChange={(e) => console.log(e)}
                                             className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                           />
                                           <label
@@ -507,6 +520,9 @@ export default function ProductList() {
                                       defaultValue={option.value}
                                       type="checkbox"
                                       defaultChecked={option.checked}
+                                      onChange={(e) =>
+                                        handleFilter(e, section, option)
+                                      }
                                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                     />
                                     <label
