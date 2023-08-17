@@ -1946,3 +1946,11 @@ categories.map((c) => ({
   label: c.split("-").join(" "),
   checked: false,
 }));
+
+const brands = [...new Set([...products.map((p) => p.brand)])];
+
+brands.map((c) => ({
+  value: c,
+  label: c.split("-").join(" "),
+  checked: false,
+}));
