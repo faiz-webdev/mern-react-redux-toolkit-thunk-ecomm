@@ -7,7 +7,7 @@ export function fetchAllProducts(amount = 1) {
   });
 }
 
-export function fetchProductsByFilters(filter, sort) {
+export function fetchProductsByFilters(filter, sort, pagination) {
   let queryString = "";
   for (let key in filter) {
     let categoryValues = filter[key];
@@ -15,6 +15,13 @@ export function fetchProductsByFilters(filter, sort) {
       let lastCategoryValue = categoryValues[categoryValues.length - 1];
       queryString += `${key}=${lastCategoryValue}&`;
     }
+  }
+
+  for(let key in sort) {
+    queryString += `${key}=${sort[key]}$`;
+  }
+  for(let key in pagination) {
+    queryString += `${key}=${pagination[key]}&`;
   }
 
   return new Promise(async (resolve) => {
