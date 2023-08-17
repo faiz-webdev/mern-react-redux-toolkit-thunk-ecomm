@@ -17,10 +17,10 @@ export function fetchProductsByFilters(filter, sort, pagination) {
     }
   }
 
-  for(let key in sort) {
+  for (let key in sort) {
     queryString += `${key}=${sort[key]}$`;
   }
-  for(let key in pagination) {
+  for (let key in pagination) {
     queryString += `${key}=${pagination[key]}&`;
   }
 
@@ -30,6 +30,7 @@ export function fetchProductsByFilters(filter, sort, pagination) {
       "http://localhost:8090/products?" + queryString
     );
     const data = await response.json();
-    resolve({ data });
+    const totalItems = await response.headers.get("X-Total-Count");
+    resolve({ data: { products: data, totalItems: +totalItems } });
   });
 }

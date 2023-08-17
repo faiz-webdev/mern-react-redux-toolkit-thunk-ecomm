@@ -4,6 +4,7 @@ import {
   fetchAllProductAsync,
   fetchProductsByFiltersAsync,
   selectAllProducts,
+  selectTotalItems,
 } from "../productListSlice";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -265,6 +266,7 @@ const items = [
 export default function ProductList() {
   const dispatch = useDispatch();
   const products = useSelector(selectAllProducts);
+  const totalItems = useSelector(selectTotalItems);
   const [filter, setFilter] = useState({});
   const [sort, setSort] = useState({});
   const [page, setPage] = useState(1);
@@ -307,6 +309,8 @@ export default function ProductList() {
     const pagination = { _page: page, _limit: ITEMS_PER_PAGE };
     dispatch(fetchProductsByFiltersAsync({ filter, sort, pagination }));
   }, [dispatch, filter, sort, page]);
+
+  useEffect(() => {setPage(1)}, [totalItems, sort])
 
   return (
     <div>
@@ -415,6 +419,7 @@ export default function ProductList() {
                 page={page}
                 setPage={setPage}
                 handlePage={handlePage}
+                totalItems={totalItems}
               />
             </main>
           </div>
@@ -600,7 +605,7 @@ function DesktopFilter({ handleFilter }) {
   );
 }
 
-function Pagnation({ page, setPage, handlePage, totalItems = 55 }) {
+function Pagnation({ page, setPage, handlePage, totalItems }) {
   return (
     <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
       <div className="flex flex-1 justify-between sm:hidden">
@@ -624,8 +629,13 @@ function Pagnation({ page, setPage, handlePage, totalItems = 55 }) {
             <span className="font-medium">
               {(page - 1) * ITEMS_PER_PAGE + 1}
             </span>{" "}
-            to <span className="font-medium">{page * ITEMS_PER_PAGE}</span> of{" "}
-            <span className="font-medium">{totalItems}</span> results
+            to{" "}
+            <span className="font-medium">
+              {page * ITEMS_PER_PAGE > totalItems
+                ? totalItems
+                : page * ITEMS_PER_PAGE}
+            </span>{" "}
+            of <span className="font-medium">{totalItems}</span> results
           </p>
         </div>
         <div>
@@ -649,7 +659,7 @@ function Pagnation({ page, setPage, handlePage, totalItems = 55 }) {
                   className={`relative cursor-pointer z-10 inline-flex items-center ${
                     index + 1 === page
                       ? "bg-indigo-600 text-white"
-                      : "text-gray-400"
+                      : "text-black"
                   } px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
                 >
                   {index + 1}
