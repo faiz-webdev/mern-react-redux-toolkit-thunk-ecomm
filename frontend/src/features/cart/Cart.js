@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { increment, incrementAsync, selectCount } from "./cartSlice";
+import { selectItems } from "./cartSlice";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
@@ -35,8 +35,9 @@ const products = [
 
 export default function Cart() {
   const [open, setOpen] = useState(true);
-  const count = useSelector(selectCount);
   const dispatch = useDispatch();
+
+  const items = useSelector(selectItems)
 
   return (
     <>
@@ -47,12 +48,12 @@ export default function Cart() {
         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
           <div className="flow-root">
             <ul role="list" className="-my-6 divide-y divide-gray-200">
-              {products.map((product) => (
+              {items.map((product) => (
                 <li key={product.id} className="flex py-6">
                   <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                     <img
-                      src={product.imageSrc}
-                      alt={product.imageAlt}
+                      src={product.thumbnail}
+                      alt={product.title}
                       className="h-full w-full object-cover object-center"
                     />
                   </div>
@@ -61,12 +62,12 @@ export default function Cart() {
                     <div>
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <h3>
-                          <a href={product.href}>{product.name}</a>
+                          <a href={product.href}>{product.title}</a>
                         </h3>
-                        <p className="ml-4">{product.price}</p>
+                        <p className="ml-4">${product.price}</p>
                       </div>
                       <p className="mt-1 text-sm text-gray-500">
-                        {product.color}
+                        {product.brand}
                       </p>
                     </div>
                     <div className="flex flex-1 items-end justify-between text-sm">
