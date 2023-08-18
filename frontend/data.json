@@ -2367,6 +2367,11 @@
       "email": "test2@mail.com",
       "password": "Qwerty123",
       "id": 3
+    },
+    {
+      "email": "test4@mil.com",
+      "password": "Qwerty123",
+      "id": 4
     }
   ],
   "cart": [
