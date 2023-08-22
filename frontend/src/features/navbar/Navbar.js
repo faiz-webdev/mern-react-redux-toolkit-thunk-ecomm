@@ -36,7 +36,6 @@ function Navbar({ children }) {
 
   return (
     <>
-      {items && items.length}
       <div className="min-h-full">
         <Disclosure as="nav" className="bg-gray-800">
           {({ open }) => (
