@@ -12,6 +12,7 @@ import {
   selectLoggedInUser,
   updateUserAsync,
 } from "../features/auth/authSlice";
+import { createOrderAsync } from "../features/order/orderSlice";
 
 const products = [
   {
@@ -71,13 +72,23 @@ function Checkout() {
   const user = useSelector(selectLoggedInUser);
 
   const handleAddress = (e) => {
-    console.log(user.addresses[e.target.value]);
     setSelectedAddress(user.addresses[e.target.value]);
   };
 
   const handlepayment = (e) => {
-    console.log("e.target.value", e.target.value);
     setPaymentMethod(e.target.value);
+  };
+
+  const handleOrder = (e) => {
+    const order = {
+      items,
+      totalAmount,
+      totalItems,
+      user,
+      paymentMethod,
+      selectedAddress,
+    };
+    dispatch(createOrderAsync(order));
   };
 
   return (
@@ -320,6 +331,7 @@ function Checkout() {
                             id="cash"
                             name="payments"
                             type="radio"
+                            checked={paymentMethod === "cash"}
                             className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                           />
                           <label
@@ -336,6 +348,7 @@ function Checkout() {
                             id="card"
                             name="payments"
                             type="radio"
+                            checked={paymentMethod === "card"}
                             className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                           />
                           <label
@@ -432,12 +445,12 @@ function Checkout() {
                   Shipping and taxes calculated at checkout.
                 </p>
                 <div className="mt-6">
-                  <Link
-                    to="/checkout"
-                    className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                  <div
+                    onClick={handleOrder}
+                    className="flex items-center cursor-pointer justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                   >
-                    Checkout
-                  </Link>
+                    Order Now
+                  </div>
                 </div>
                 <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                   <p>
