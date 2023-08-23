@@ -93,7 +93,13 @@ function Checkout() {
       selectedAddress,
       status: "pending", // other status can be delivered, received
     };
-    dispatch(createOrderAsync(order));
+
+    if (selectedAddress !== null) dispatch(createOrderAsync(order));
+    else {
+      alert("Please select an address");
+      return;
+    }
+    // console.log(selectedAddress);
   };
 
   return (
