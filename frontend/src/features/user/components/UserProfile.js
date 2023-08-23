@@ -1,18 +1,22 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { selectLoggedInUser } from "../../auth/authSlice";
-import { selectUserInfo } from "../userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUserInfo, updateUserAsync } from "../userSlice";
 
 function UserProfile() {
-  // const user = useSelector(selectLoggedInUser);
-  const user = useSelector(selectUserInfo);
+  const dispatch = useDispatch();
+  let user = useSelector(selectUserInfo);
 
   const handleEdit = (e, id) => {
     console.log("handleEdit", id);
   };
 
-  const handleRemove = (e, id) => {
-    console.log("handleRemove", id);
+  const handleRemove = (e, index) => {
+    console.log("handleRemove", index);
+    const newUser = { ...user, addresses: [...user.addresses] };
+    console.log("18: ", newUser);
+    newUser.addresses.splice(index, 1);
+    console.log("20: ", newUser);
+    dispatch(updateUserAsync(newUser));
   };
 
   return (

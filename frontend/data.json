@@ -2357,26 +2357,7 @@
       "email": "test@mail.com",
       "password": "Qwerty123",
       "id": 1,
-      "addresses": [
-        {
-          "name": "Faiz",
-          "email": "test@mail.com",
-          "phone": "7524061949",
-          "street": "11th main delhi",
-          "city": "Delhi",
-          "state": "delhi",
-          "pinCode": "123457"
-        },
-        {
-          "name": "Faiz",
-          "email": "test@mail.com",
-          "phone": "7524061949",
-          "street": "11th main delhi",
-          "city": "Delhi",
-          "state": "delhi",
-          "pinCode": "123457"
-        }
-      ]
+      "addresses": []
     },
     {
       "email": "test1@mail.com",
