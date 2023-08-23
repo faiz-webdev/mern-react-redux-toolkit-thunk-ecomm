@@ -2356,22 +2356,45 @@
     {
       "email": "test@mail.com",
       "password": "Qwerty123",
-      "id": 1
+      "id": 1,
+      "addresses": [
+        {
+          "name": "Faiz",
+          "email": "test@mail.com",
+          "phone": "7524061949",
+          "street": "11th main delhi",
+          "city": "Delhi",
+          "state": "delhi",
+          "pinCode": "123457"
+        },
+        {
+          "name": "Faiz",
+          "email": "test@mail.com",
+          "phone": "7524061949",
+          "street": "11th main delhi",
+          "city": "Delhi",
+          "state": "delhi",
+          "pinCode": "123457"
+        }
+      ]
     },
     {
       "email": "test1@mail.com",
       "password": "Qwerty123",
-      "id": 2
+      "id": 2,
+      "addresses": []
     },
     {
       "email": "test2@mail.com",
       "password": "Qwerty123",
-      "id": 3
+      "id": 3,
+      "addresses": []
     },
     {
       "email": "test4@mil.com",
       "password": "Qwerty123",
-      "id": 4
+      "id": 4,
+      "addresses": []
     }
   ],
   "cart": [
@@ -2392,9 +2415,22 @@
         "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
       ],
       "deleted": true,
-      "qauntity": 3,
+      "qauntity": 5,
       "user": 1,
-      "id": 1
+      "id": 1,
+      "email": "test@mail.com",
+      "password": "Qwerty123",
+      "addresses": [
+        {
+          "name": "Full  name",
+          "email": "test@mail.com",
+          "phone": "1234567890",
+          "street": "11th delhi",
+          "city": "Delhi",
+          "state": "delhi",
+          "pinCode": "123456"
+        }
+      ]
     }
   ],
   "orders": [
