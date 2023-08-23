@@ -2357,7 +2357,17 @@
       "email": "test@mail.com",
       "password": "Qwerty123",
       "id": 1,
-      "addresses": []
+      "addresses": [
+        {
+          "name": "Faiz Ansari updated",
+          "email": "test@mail.com",
+          "phone": "7524061949",
+          "street": "Near shipra sun city",
+          "city": "Noida",
+          "state": "UP",
+          "pinCode": "123457"
+        }
+      ]
     },
     {
       "email": "test1@mail.com",
@@ -2649,6 +2659,61 @@
       },
       "status": "pending",
       "id": 4
+    },
+    {
+      "items": [
+        {
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 1111,
+          "discountPercentage": 17.94,
+          "rating": 0,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/2/1.jpg",
+            "https://i.dummyjson.com/data/products/2/2.jpg",
+            "https://i.dummyjson.com/data/products/2/3.jpg",
+            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+          ],
+          "deleted": true,
+          "qauntity": 1,
+          "user": 1,
+          "id": 2
+        }
+      ],
+      "totalAmount": 1111,
+      "totalItems": 1,
+      "user": {
+        "email": "test@mail.com",
+        "password": "Qwerty123",
+        "id": 1,
+        "addresses": [
+          {
+            "name": "Faiz",
+            "email": "test@mail.com",
+            "phone": "7524061949",
+            "street": "Near shipra sun city",
+            "city": "Noida",
+            "state": "UP",
+            "pinCode": "123457"
+          }
+        ]
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Faiz",
+        "email": "test@mail.com",
+        "phone": "7524061949",
+        "street": "Near shipra sun city",
+        "city": "Noida",
+        "state": "UP",
+        "pinCode": "123457"
+      },
+      "status": "pending",
+      "id": 5
     }
   ]
 }

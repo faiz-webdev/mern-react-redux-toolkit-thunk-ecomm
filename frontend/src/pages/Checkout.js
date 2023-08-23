@@ -70,6 +70,7 @@ function Checkout() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -121,6 +122,7 @@ function Checkout() {
                     addresses: [...user.addresses, data],
                   })
                 );
+                reset();
               })}
             >
               <div className="space-y-12">
