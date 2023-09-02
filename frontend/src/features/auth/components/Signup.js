@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link, Navigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { selectLoggedInUser, createUserAsync } from "../authSlice";
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
+
+import { selectLoggedInUser, createUserAsync } from '../authSlice';
+import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 export default function Signup() {
   const dispatch = useDispatch();
@@ -14,9 +16,11 @@ export default function Signup() {
     formState: { errors },
   } = useForm();
 
+  console.log(errors);
+
   return (
     <>
-    {user && <Navigate to="/" replace={true}></Navigate>}
+      {user && <Navigate to="/" replace={true}></Navigate>}
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
@@ -25,7 +29,7 @@ export default function Signup() {
             alt="Your Company"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Create an account
+            Create a New Account
           </h2>
         </div>
 
@@ -33,11 +37,12 @@ export default function Signup() {
           <form
             noValidate
             className="space-y-6"
-            onSubmit={handleSubmit((data) =>
+            onSubmit={handleSubmit((data) => {
               dispatch(
-                createUserAsync({ email: data.email, password: data.password, addresses: [] })
-              )
-            )}
+                createUserAsync({ email: data.email, password: data.password, addresses:[] })
+              );
+              console.log(data);
+            })}
           >
             <div>
               <label
@@ -49,18 +54,18 @@ export default function Signup() {
               <div className="mt-2">
                 <input
                   id="email"
-                  {...register("email", {
-                    required: "Email is required",
+                  {...register('email', {
+                    required: 'email is required',
                     pattern: {
                       value: /\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/gi,
-                      message: "Email is not valid",
+                      message: 'email not valid',
                     },
                   })}
                   type="email"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
-                {errors?.email && (
-                  <p className="text-red-500">{errors?.email?.message}</p>
+                {errors.email && (
+                  <p className="text-red-500">{errors.email.message}</p>
                 )}
               </div>
             </div>
@@ -73,12 +78,20 @@ export default function Signup() {
                 >
                   Password
                 </label>
+                <div className="text-sm">
+                  <a
+                    href="#"
+                    className="font-semibold text-indigo-600 hover:text-indigo-500"
+                  >
+                    Forgot password?
+                  </a>
+                </div>
               </div>
               <div className="mt-2">
                 <input
                   id="password"
-                  {...register("password", {
-                    required: "Password is required",
+                  {...register('password', {
+                    required: 'password is required',
                     pattern: {
                       value:
                         /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
@@ -90,11 +103,12 @@ export default function Signup() {
                   type="password"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
-                {errors?.password && (
-                  <p className="text-red-500">{errors?.password?.message}</p>
+                {errors.password && (
+                  <p className="text-red-500">{errors.password.message}</p>
                 )}
               </div>
             </div>
+
             <div>
               <div className="flex items-center justify-between">
                 <label
@@ -107,18 +121,17 @@ export default function Signup() {
               <div className="mt-2">
                 <input
                   id="confirmPassword"
-                  {...register("confirmPassword", {
-                    required: "Confirm password is required",
+                  {...register('confirmPassword', {
+                    required: 'confirm password is required',
                     validate: (value, formValues) =>
-                      value === formValues.password ||
-                      "Password and confirm password not matching",
+                      value === formValues.password || 'password not matching',
                   })}
                   type="password"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
-                {errors?.confirmPassword && (
+                {errors.confirmPassword && (
                   <p className="text-red-500">
-                    {errors?.confirmPassword?.message}
+                    {errors.confirmPassword.message}
                   </p>
                 )}
               </div>
@@ -135,12 +148,12 @@ export default function Signup() {
           </form>
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            Already a member?{" "}
+            Already a Member?{' '}
             <Link
-              to={"/login"}
+              to="/login"
               className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
             >
-              Login
+              Log In
             </Link>
           </p>
         </div>

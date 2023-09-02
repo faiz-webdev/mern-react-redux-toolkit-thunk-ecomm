@@ -49,9 +49,7 @@
       "brand": "Samsung",
       "category": "smartphones",
       "thumbnail": "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
-      "images": [
-        "https://i.dummyjson.com/data/products/3/1.jpg"
-      ],
+      "images": ["https://i.dummyjson.com/data/products/3/1.jpg"],
       "deleted": true
     },
     {
@@ -1429,9 +1427,7 @@
       "brand": "Fashion Jewellery",
       "category": "womens-jewellery",
       "thumbnail": "https://i.dummyjson.com/data/products/78/thumbnail.jpg",
-      "images": [
-        "https://i.dummyjson.com/data/products/78/thumbnail.jpg"
-      ]
+      "images": ["https://i.dummyjson.com/data/products/78/thumbnail.jpg"]
     },
     {
       "id": 79,
@@ -1444,9 +1440,7 @@
       "brand": "Fashion Jewellery",
       "category": "womens-jewellery",
       "thumbnail": "https://i.dummyjson.com/data/products/79/thumbnail.jpg",
-      "images": [
-        "https://i.dummyjson.com/data/products/79/1.jpg"
-      ]
+      "images": ["https://i.dummyjson.com/data/products/79/1.jpg"]
     },
     {
       "id": 80,
@@ -2366,6 +2360,24 @@
           "city": "Noida",
           "state": "UP",
           "pinCode": "123457"
+        },
+        {
+          "name": "Sam Morris",
+          "email": "sam@mail.com",
+          "phone": "1234567890",
+          "street": "Greater noida",
+          "city": "Noida",
+          "state": "UP",
+          "pinCode": "123457"
+        },
+        {
+          "name": "Vishal",
+          "email": "v@mail.com",
+          "phone": "900000009",
+          "street": "mg raod",
+          "city": "Gurgaon",
+          "state": "HR",
+          "pinCode": "323232"
         }
       ]
     },
@@ -2388,29 +2400,7 @@
       "addresses": []
     }
   ],
-  "cart": [
-    {
-      "title": "iPhone 9",
-      "description": "An apple mobile which is nothing like apple",
-      "price": 993,
-      "discountPercentage": 12.96,
-      "rating": 0,
-      "stock": 0,
-      "brand": "Apple",
-      "category": "smartphones",
-      "thumbnail": "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
-      "images": [
-        "https://i.dummyjson.com/data/products/1/1.jpg",
-        "https://i.dummyjson.com/data/products/1/2.jpg",
-        "https://i.dummyjson.com/data/products/1/3.jpg",
-        "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
-      ],
-      "deleted": true,
-      "qauntity": 1,
-      "user": 2,
-      "id": 1
-    }
-  ],
+  "cart": [],
   "orders": [
     {
       "items": [
